@@ -1,5 +1,7 @@
 package br.com.fiap.roadassist.controller;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.roadassist.model.WinchDriverModel;
 import br.com.fiap.roadassist.service.WinchDriverServiceImpl;
-import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,7 +39,7 @@ public class WinchDriverController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity updata(@RequestBody WinchDriverModel winchDriverModel, HttpServletRequest request, @PathVariable UUID id){
+    public ResponseEntity updata(@RequestBody WinchDriverModel winchDriverModel, @PathVariable UUID id){
         try {
             WinchDriverModel winchDriver = this.service.update(winchDriverModel, id);
 
