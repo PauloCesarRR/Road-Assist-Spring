@@ -4,7 +4,6 @@ import java.util.UUID;
 import java.util.List;
 
 import br.com.fiap.roadassist.model.WinchDriverModel;
-import jakarta.servlet.http.HttpServletRequest;
 
 public interface IWinchDriverService {
     public WinchDriverModel create(WinchDriverModel winchDriverModel) throws Exception;

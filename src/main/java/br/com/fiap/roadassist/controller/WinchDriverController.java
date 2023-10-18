@@ -1,6 +1,5 @@
 package br.com.fiap.roadassist.controller;
 
-import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,7 @@ public class WinchDriverController {
     private WinchDriverServiceImpl service;
 
     @PostMapping("/")
-    public ResponseEntity create(@RequestBody WinchDriverModel winchDriverModel){
+    public ResponseEntity<?> create(@RequestBody WinchDriverModel winchDriverModel){
         try {
             WinchDriverModel winchDriver = service.create(winchDriverModel);
 
@@ -42,7 +41,7 @@ public class WinchDriverController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity update(@RequestBody WinchDriverModel winchDriverModel, @PathVariable UUID id){
+    public ResponseEntity<?> update(@RequestBody WinchDriverModel winchDriverModel, @PathVariable UUID id){
         try {
             WinchDriverModel winchDriver = service.update(winchDriverModel, id);
 
@@ -57,12 +56,12 @@ public class WinchDriverController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity getById(@PathVariable UUID id){
+    public ResponseEntity<?> getById(@PathVariable UUID id){
         try {
             WinchDriverModel winchDriver = service.getById(id);
 
             if(winchDriver == null){
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este Motorista de Caminhão não existe");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Este Motorista de Caminhão não existe");
             }
 
             return ResponseEntity.status(HttpStatus.CREATED).body(winchDriver);
@@ -82,11 +81,11 @@ public class WinchDriverController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable UUID id){
+    public ResponseEntity<?> delete(@PathVariable UUID id){
         try {
             boolean winchDriverExists = service.delete(id);
             if(winchDriverExists == false) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Motorista de Caminhão não encontrado");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Motorista de Caminhão não encontrado");
             }
 
             return ResponseEntity.status(HttpStatus.CREATED).body("Motorista de Caminhão Deletado com Sucesso");

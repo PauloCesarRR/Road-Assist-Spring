@@ -4,14 +4,11 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import br.com.fiap.roadassist.model.WinchDriverModel;
 import br.com.fiap.roadassist.repo.IWinchDriverRepo;
 import br.com.fiap.roadassist.utils.Utils;
-import jakarta.servlet.http.HttpServletRequest;
 
 public class WinchDriverServiceImpl implements IWinchDriverService {
 
