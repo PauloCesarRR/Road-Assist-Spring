@@ -17,15 +17,24 @@ public class WinchDriverModel {
     @GeneratedValue(generator = "UUID")
     private UUID id;
 
-    @Column(length = 255, unique = true)
+    @Column(name = "email")
     private String email;
 
-    @Column(length = 255, nullable = false)
+    @Column(name = "password")
     private String password;
 
-    @Column(length = 80, nullable = false)
+    @Column(name = "name")
     private String name;
 
-    @Column(length = 11, nullable = false)
+    @Column(name = "cpf")
     private String cpf;
+
+    @Column(name = "phone_number")
+    private int phoneNumber;
+
+    @Column(name = "active")
+    private boolean active;
+
+    @Column(name = "address_id")
+    private UUID addressId;
 }
