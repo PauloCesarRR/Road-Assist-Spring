@@ -11,5 +11,5 @@ public interface IWinchDriverService {
     public WinchDriverModel update(WinchDriverModel winchDriverModel, UUID id) throws Exception;
     public List<WinchDriverModel> getAll() throws Exception;
     public WinchDriverModel getById(UUID id) throws Exception;
-    public void delete(UUID id) throws Exception;
+    public boolean delete(UUID id) throws Exception;
 }

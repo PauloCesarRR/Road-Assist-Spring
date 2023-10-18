@@ -59,7 +59,13 @@ public class WinchDriverServiceImpl implements IWinchDriverService {
 
 
     @Override
-    public void delete(UUID id) throws Exception {
-        repo.deleteById(id);
+    public boolean delete(UUID id) throws Exception {
+        WinchDriverModel winchDriver = repo.findById(id).orElse(null);
+        if(winchDriver == null){
+            return false;
+        } else {
+            repo.deleteById(id);
+            return true;
+        } 
     }    
 }

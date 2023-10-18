@@ -1,5 +1,6 @@
 package br.com.fiap.roadassist.controller;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.roadassist.model.WinchDriverModel;
 import br.com.fiap.roadassist.service.WinchDriverServiceImpl;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -39,7 +42,7 @@ public class WinchDriverController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity updata(@RequestBody WinchDriverModel winchDriverModel, @PathVariable UUID id){
+    public ResponseEntity update(@RequestBody WinchDriverModel winchDriverModel, @PathVariable UUID id){
         try {
             WinchDriverModel winchDriver = service.update(winchDriverModel, id);
 
@@ -53,5 +56,44 @@ public class WinchDriverController {
         }
     }
 
-    
+    @GetMapping("/{id}")
+    public ResponseEntity getById(@PathVariable UUID id){
+        try {
+            WinchDriverModel winchDriver = service.getById(id);
+
+            if(winchDriver == null){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este Motorista de Caminhão não existe");
+            }
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(winchDriver);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
+        }
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<?> getAll(){
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(service.getAll());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
+        }
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable UUID id){
+        try {
+            boolean winchDriverExists = service.delete(id);
+            if(winchDriverExists == false) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Motorista de Caminhão não encontrado");
+            }
+
+            return ResponseEntity.status(HttpStatus.CREATED).body("Motorista de Caminhão Deletado com Sucesso");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
+        }
+    }
+
+
 }
