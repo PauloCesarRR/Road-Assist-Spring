@@ -1,20 +1,18 @@
 package br.com.fiap.roadassist.controller;
 
-import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import br.com.fiap.roadassist.errors.ExceptionHandlerController;
 import br.com.fiap.roadassist.model.WinchDriverModel;
-import br.com.fiap.roadassist.repo.IWinchDriverRepo;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import br.com.fiap.roadassist.service.WinchDriverServiceImpl;
+import jakarta.servlet.http.HttpServletRequest;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
@@ -22,25 +20,35 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 public class WinchDriverController {
     
     @Autowired
-    private IWinchDriverRepo repo;
+    private WinchDriverServiceImpl service;
 
     @PostMapping("/")
     public ResponseEntity create(@RequestBody WinchDriverModel winchDriverModel){
         try {
-            var winchDriver = this.repo.findByEmail(winchDriverModel.getEmail());
+            WinchDriverModel winchDriver = this.service.create(winchDriverModel);
 
-            if(winchDriver != null){
+            if(winchDriver == null){
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este Motorista de Caminhão já existe");
             }
 
-            var passwordHashred = BCrypt.withDefaults().hashToString(12,winchDriverModel.getPassword().toCharArray());
+            return ResponseEntity.status(HttpStatus.CREATED).body(winchDriver);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
+        }
+    }
 
-            winchDriverModel.setPassword(passwordHashred);
+    @PutMapping("/{id}")
+    public ResponseEntity updata(@RequestBody WinchDriverModel winchDriverModel, HttpServletRequest request, @PathVariable UUID id){
+        try {
+            WinchDriverModel winchDriver = this.service.update(winchDriverModel, id);
 
-            var winchDriverCreated = this.repo.save(winchDriverModel);
-            return ResponseEntity.status(HttpStatus.CREATED).body(winchDriverCreated);
-        } catch (HttpMessageNotReadableException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMostSpecificCause().getMessage());
+            if(winchDriver == null){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este Motorista de Caminhão já existe");
+            }
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(winchDriver);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
     }
 }
