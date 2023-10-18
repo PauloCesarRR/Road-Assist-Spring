@@ -26,7 +26,7 @@ public class WinchDriverController {
     @PostMapping("/")
     public ResponseEntity create(@RequestBody WinchDriverModel winchDriverModel){
         try {
-            WinchDriverModel winchDriver = this.service.create(winchDriverModel);
+            WinchDriverModel winchDriver = service.create(winchDriverModel);
 
             if(winchDriver == null){
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este Motorista de Caminhão já existe");
@@ -41,7 +41,7 @@ public class WinchDriverController {
     @PutMapping("/{id}")
     public ResponseEntity updata(@RequestBody WinchDriverModel winchDriverModel, @PathVariable UUID id){
         try {
-            WinchDriverModel winchDriver = this.service.update(winchDriverModel, id);
+            WinchDriverModel winchDriver = service.update(winchDriverModel, id);
 
             if(winchDriver == null){
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este Motorista de Caminhão já existe");
@@ -52,4 +52,6 @@ public class WinchDriverController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
     }
+
+    
 }

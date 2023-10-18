@@ -20,7 +20,7 @@ public class WinchDriverServiceImpl implements IWinchDriverService {
 
     @Override
     public WinchDriverModel create(WinchDriverModel winchDriverModel) throws Exception {
-        var winchDriver = this.repo.findByEmail(winchDriverModel.getEmail());
+        WinchDriverModel winchDriver = repo.findByEmail(winchDriverModel.getEmail());
 
         if(winchDriver != null){
             return null;
@@ -30,42 +30,36 @@ public class WinchDriverServiceImpl implements IWinchDriverService {
 
         winchDriverModel.setPassword(passwordHashred);
 
-        return this.repo.save(winchDriverModel);
+        return repo.save(winchDriverModel);
     }
 
 
     @Override
     public WinchDriverModel update(WinchDriverModel winchDriverModel, UUID id) throws Exception {
-        var winchDriver = this.repo.findById(id).orElse(null);
+        WinchDriverModel winchDriver = repo.findById(id).orElse(null);
         if(winchDriver == null) {
             return null;
         }
 
         Utils.copyNonNullProperties(winchDriverModel, winchDriver);
-        return this.repo.save(winchDriver);
+        return repo.save(winchDriver);
     }
 
 
     @Override
     public List<WinchDriverModel> getAll() throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+        return repo.findAll();
     }
 
 
     @Override
     public WinchDriverModel getById(UUID id) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getById'");
+        return repo.findById(id).orElse(null);
     }
 
 
     @Override
     public void delete(UUID id) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
-
-   
-    
+        repo.deleteById(id);
+    }    
 }

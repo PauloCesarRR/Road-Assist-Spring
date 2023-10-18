@@ -9,5 +9,5 @@ import java.util.List;
 
 
 public interface IWinchDriverRepo extends JpaRepository<WinchDriverModel, UUID>{
-    List<WinchDriverModel> findByEmail(String email);
+    WinchDriverModel findByEmail(String email);
 }
