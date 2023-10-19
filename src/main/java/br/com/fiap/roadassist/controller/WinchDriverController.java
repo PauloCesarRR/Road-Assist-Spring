@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.roadassist.model.WinchDriverModel;
+import br.com.fiap.roadassist.service.IWinchDriverService;
 import br.com.fiap.roadassist.service.WinchDriverServiceImpl;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class WinchDriverController {
     
     @Autowired
-    private WinchDriverServiceImpl service;
+    private IWinchDriverService service;
 
     @PostMapping("/")
     public ResponseEntity<?> create(@RequestBody WinchDriverModel winchDriverModel){
