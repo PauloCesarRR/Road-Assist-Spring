@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.roadassist.model.WinchDriverModel;
 import br.com.fiap.roadassist.service.IWinchDriverService;
-import br.com.fiap.roadassist.service.WinchDriverServiceImpl;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +28,7 @@ public class WinchDriverController {
     @PostMapping("/")
     public ResponseEntity<?> create(@RequestBody WinchDriverModel winchDriverModel){
         try {
-            WinchDriverModel winchDriver = service.create(winchDriverModel);
+            WinchDriverModel winchDriver = this.service.create(winchDriverModel);
 
             if(winchDriver == null){
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este Motorista de Caminhão já existe");

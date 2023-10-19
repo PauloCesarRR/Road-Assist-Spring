@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import br.com.fiap.roadassist.model.WinchDriverModel;
 import br.com.fiap.roadassist.repo.IWinchDriverRepo;
 import br.com.fiap.roadassist.utils.Utils;
 
+@Component
 public class WinchDriverServiceImpl implements IWinchDriverService {
 
     @Autowired
