@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
-@RequestMapping("/winchDriver/")
+@RequestMapping("/winchDriver")
 public class WinchDriverController {
     
     @Autowired
