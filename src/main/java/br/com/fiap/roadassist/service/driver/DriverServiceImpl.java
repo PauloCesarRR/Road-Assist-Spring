@@ -1,4 +1,4 @@
-package br.com.fiap.roadassist.service;
+package br.com.fiap.roadassist.service.driver;
 
 import java.util.List;
 import java.util.UUID;

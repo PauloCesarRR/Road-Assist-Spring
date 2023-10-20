@@ -1,4 +1,4 @@
-package br.com.fiap.roadassist.service;
+package br.com.fiap.roadassist.service.winchDriver;
 
 import java.util.UUID;
 import java.util.List;
