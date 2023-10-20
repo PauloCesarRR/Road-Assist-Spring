@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import br.com.fiap.roadassist.model.CityModel;
-import br.com.fiap.roadassist.service.city.ICityService;
+import br.com.fiap.roadassist.model.AddressModel;
+import br.com.fiap.roadassist.service.address.IAddressService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,37 +19,33 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
-@RequestMapping("/city")
-public class CityController {
+@RequestMapping("/address")
+public class AddressController {
     
     @Autowired
-    private ICityService service;
+    private IAddressService service;
 
     @PostMapping("/")
-    public ResponseEntity<?> create(@RequestBody CityModel cityModel){
+    public ResponseEntity<?> create(@RequestBody AddressModel addressModel){
         try {
-            CityModel city = service.create(cityModel);
+            AddressModel address = service.create(addressModel);
 
-            if(city == null){
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Esta cidade já está cadastrado");
-            }
-
-            return ResponseEntity.status(HttpStatus.CREATED).body(city);
+            return ResponseEntity.status(HttpStatus.CREATED).body(address);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody CityModel cityModel, @PathVariable UUID id){
+    public ResponseEntity<?> update(@RequestBody AddressModel AddressModel, @PathVariable UUID id){
         try {
-            CityModel city = service.update(cityModel, id);
+            AddressModel address = service.update(AddressModel, id);
 
-            if(city == null){
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Esta cidade não está cadastrado");
+            if(address == null){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este endereço não está cadastrado");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(city);
+            return ResponseEntity.status(HttpStatus.CREATED).body(address);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -58,13 +54,13 @@ public class CityController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable UUID id){
         try {
-            CityModel city = service.getById(id);
+            AddressModel address = service.getById(id);
 
-            if(city == null){
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Esta cidade não existe");
+            if(address == null){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Este endereço não existe");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(city);
+            return ResponseEntity.status(HttpStatus.CREATED).body(address);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -83,12 +79,12 @@ public class CityController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id){
         try {
-            boolean cityExists = service.delete(id);
-            if(cityExists == false) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cidade não encontrada");
+            boolean addressExists = service.delete(id);
+            if(addressExists == false) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Endereço não encontrado");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body("Cidade deletada com Sucesso");
+            return ResponseEntity.status(HttpStatus.CREATED).body("Endereço deletado com Sucesso");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
