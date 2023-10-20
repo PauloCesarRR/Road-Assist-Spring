@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.roadassist.model.CityModel;
-import br.com.fiap.roadassist.service.ICityService;
+import br.com.fiap.roadassist.service.city.ICityService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

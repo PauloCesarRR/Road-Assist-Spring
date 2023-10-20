@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.roadassist.model.DriverModel;
-import br.com.fiap.roadassist.service.IDriverService;
+import br.com.fiap.roadassist.service.driver.IDriverService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

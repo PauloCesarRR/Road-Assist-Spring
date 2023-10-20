@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.roadassist.model.WinchDriverModel;
-import br.com.fiap.roadassist.service.IWinchDriverService;
+import br.com.fiap.roadassist.service.winchDriver.IWinchDriverService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
