@@ -9,7 +9,7 @@ import br.com.fiap.roadassist.model.CompatibilityVehicleWinchModel;
 
 public interface ICompatibilityVehicleWinchRepo extends JpaRepository<CompatibilityVehicleWinchModel,UUID>{
     @Query(
-        "SELECT * FROM COMPATIBILITY_VEHICLE_WINCH WHERE VEHICLE_ID=".concat()
+        "SELECT * FROM COMPATIBILITY_VEHICLE_WINCH WHERE VEHICLE_ID="
     )
     CompatibilityVehicleWinchModel findByTypeWinchIdAndTypeVehicleId(UUID typeWinchId, UUID typeVehicleId);
 }
