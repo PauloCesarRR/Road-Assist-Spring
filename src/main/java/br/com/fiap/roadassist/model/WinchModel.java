@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -37,10 +39,11 @@ public class WinchModel {
     @Column(name = "length")
     private Float length;
 
-    @Column(name = "winch_driver_id")
-    private UUID idWinchDriver;
+    @ManyToOne
+	@JoinColumn(name = "winch_winch_driver_fk")
+	private WinchDriverModel winchDriver;
 
-    @Column(name = "type_vehicle_id")
-    private UUID idTypeVehicle;
-
+    @ManyToOne
+	@JoinColumn(name = "winch_type_winch_fk")
+	private TypeWinchModel typeWinch;
 }

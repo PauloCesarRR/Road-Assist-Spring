@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -34,10 +36,11 @@ public class CallModel {
     @Column(name = "winch_id")
     private UUID winch;
 
-    @Column(name = "start_address_id")
-    private UUID startAddress;
+    @ManyToOne
+	@JoinColumn(name = "call_winch_start_address_fk")
+	private AddressModel startAddress;
 
-    @Column(name = "end_address_id")
-    private UUID endAddress;
-
+    @ManyToOne
+	@JoinColumn(name = "call_winch_end_address_fk")
+	private AddressModel endAddress;
 }
