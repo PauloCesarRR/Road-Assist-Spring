@@ -31,7 +31,7 @@ public class TypeVehicleController {
             TypeVehicleModel typeVehicle = service.create(typeVehicleModel);
 
             if(typeVehicle == null){
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este Tipo de Guincho já está cadastrado");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este Tipo de Veículo já está cadastrado");
             }
 
             return ResponseEntity.status(HttpStatus.CREATED).body(typeVehicle);
@@ -46,7 +46,7 @@ public class TypeVehicleController {
             TypeVehicleModel typeVehicle = service.update(typeVehicleModel, id);
 
             if(typeVehicle == null){
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este Tipo de Guincho não está cadastrado");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este Tipo de Veículo não está cadastrado");
             }
 
             return ResponseEntity.status(HttpStatus.CREATED).body(typeVehicle);
@@ -61,7 +61,7 @@ public class TypeVehicleController {
             TypeVehicleModel typeVehicle = service.getById(id);
 
             if(typeVehicle == null){
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Este Estado não existe");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Este Tipo de Veículo não existe");
             }
 
             return ResponseEntity.status(HttpStatus.CREATED).body(typeVehicle);
@@ -85,10 +85,10 @@ public class TypeVehicleController {
         try {
             boolean typeVehicleExists = service.delete(id);
             if(typeVehicleExists == false) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tipo de Guincho não encontrado");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tipo de Veículo não encontrado");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body("Tipo de Guincho Deletado com Sucesso");
+            return ResponseEntity.status(HttpStatus.CREATED).body("Tipo de Veículo Deletado com Sucesso");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }

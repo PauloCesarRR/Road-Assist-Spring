@@ -61,7 +61,7 @@ public class TypeWinchController {
             TypeWinchModel typeWinch = service.getById(id);
 
             if(typeWinch == null){
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Este Estado não existe");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Este Tipo de Guincho não existe");
             }
 
             return ResponseEntity.status(HttpStatus.CREATED).body(typeWinch);
