@@ -17,7 +17,7 @@ public class CompatibilityVehicleWinchServiceImpl implements ICompatibilityVehic
 
     @Override
     public CompatibilityVehicleWinchModel create(CompatibilityVehicleWinchModel compatibilityModel) throws Exception {
-        CompatibilityVehicleWinchModel compatibility = repo.findByTypeWinchAndTypeVehicle(compatibilityModel.getTypeWinch(), compatibilityModel.getTypeVehicle());
+        CompatibilityVehicleWinchModel compatibility = repo.findByTypeWinchAndTypeVehicleContaining(compatibilityModel.getTypeWinch(), compatibilityModel.getTypeVehicle());
 
         if(compatibility != null){
             return null;
