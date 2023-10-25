@@ -18,7 +18,7 @@ public class CityServiceImpl implements ICityService {
 
     @Override
     public CityModel create(CityModel cityModel) throws Exception {
-        CityModel city = repo.findByNameAndIdStateContaining(cityModel.getName(), cityModel.getIdState());
+        CityModel city = repo.findByNameAndStateContaining(cityModel.getName(), cityModel.getState());
 
         if(city != null){
             return null;

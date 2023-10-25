@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -28,7 +30,7 @@ public class DriverModel {
     private String name;
 
     @Column(name = "cpf")
-    private String cpf;
+    private long cpf;
 
     @Column(name = "phone_number")
     private long phoneNumber;
@@ -36,6 +38,7 @@ public class DriverModel {
     @Column(name = "active")
     private boolean active;
 
-    @Column(name = "address_id")
-    private UUID addressId;
+    @ManyToOne
+	@JoinColumn(name = "driver_address_fk")
+	private AddressModel address;
 }

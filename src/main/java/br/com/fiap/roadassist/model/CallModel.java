@@ -29,12 +29,14 @@ public class CallModel {
 
     @Column(name = "situation_call")
     private String situationCall;
+   
+    @ManyToOne
+	@JoinColumn(name = "call_winch_vehicle_fk")
+	private VehicleModel vehicle;
 
-    @Column(name = "vehicle_id")
-    private UUID vehicle;
-
-    @Column(name = "winch_id")
-    private UUID winch;
+    @ManyToOne
+	@JoinColumn(name = "call_winch_winch_fk")
+	private WinchModel winch;
 
     @ManyToOne
 	@JoinColumn(name = "call_winch_start_address_fk")
