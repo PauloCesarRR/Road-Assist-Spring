@@ -37,7 +37,7 @@ public class CallModel {
     @Column(name = "start_address_id")
     private UUID startAddress;
 
-    @Column(name = "start_address_id")
+    @Column(name = "end_address_id")
     private UUID endAddress;
 
 }
