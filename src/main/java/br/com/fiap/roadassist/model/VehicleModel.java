@@ -1,6 +1,6 @@
 package br.com.fiap.roadassist.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import jakarta.annotation.Nullable;
@@ -23,7 +23,7 @@ public class VehicleModel {
     @Column(name = "license_plate")
     private String licensePlate;
 
-    private Date year;
+    private LocalDate year;
 
     private Float height;
 

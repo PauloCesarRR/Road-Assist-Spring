@@ -1,6 +1,6 @@
 package br.com.fiap.roadassist.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -29,7 +29,7 @@ public class WinchModel {
     private String model;
 
     @Column(name = "year")
-    private Date year;
+    private LocalDate year;
 
     @Column(name = "height")
     private Float height;
