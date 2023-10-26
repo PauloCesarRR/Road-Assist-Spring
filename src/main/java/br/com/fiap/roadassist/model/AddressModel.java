@@ -23,7 +23,7 @@ public class AddressModel {
     @Column(name = "street")
     private String street;
 
-    @Column(name = "number")
+    @Column(name = "home_number")
     private int number;
 
     @Column(name = "complement")
