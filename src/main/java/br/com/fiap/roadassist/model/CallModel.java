@@ -31,18 +31,18 @@ public class CallModel {
     private String situationCall;
    
     @ManyToOne
-	@JoinColumn(name = "call_winch_vehicle_fk")
+	@JoinColumn(name = "vehicle_id")
 	private VehicleModel vehicle;
 
     @ManyToOne
-	@JoinColumn(name = "call_winch_winch_fk")
+	@JoinColumn(name = "winch_id")
 	private WinchModel winch;
 
     @ManyToOne
-	@JoinColumn(name = "call_winch_start_address_fk")
+	@JoinColumn(name = "start_address_id")
 	private AddressModel startAddress;
 
     @ManyToOne
-	@JoinColumn(name = "call_winch_end_address_fk")
+	@JoinColumn(name = "end_address_id")
 	private AddressModel endAddress;
 }

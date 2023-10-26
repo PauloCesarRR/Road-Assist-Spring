@@ -42,7 +42,7 @@ public class AddressModel {
     private String isAddress;
     
     @ManyToOne
-	@JoinColumn(name = "address_city_fk")
+	@JoinColumn(name = "city_id")
 	private CityModel city;
 
 }

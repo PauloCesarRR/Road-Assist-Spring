@@ -39,6 +39,6 @@ public class DriverModel {
     private boolean active;
 
     @ManyToOne
-	@JoinColumn(name = "driver_address_fk")
+	@JoinColumn(name = "address_id")
 	private AddressModel address;
 }

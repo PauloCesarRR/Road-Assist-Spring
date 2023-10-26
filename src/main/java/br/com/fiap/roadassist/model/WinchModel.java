@@ -40,10 +40,10 @@ public class WinchModel {
     private Float length;
 
     @ManyToOne
-	@JoinColumn(name = "winch_winch_driver_fk")
+	@JoinColumn(name = "winch_driver_id")
 	private WinchDriverModel winchDriver;
 
     @ManyToOne
-	@JoinColumn(name = "winch_type_winch_fk")
+	@JoinColumn(name = "type_winch_id")
 	private TypeWinchModel typeWinch;
 }

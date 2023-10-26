@@ -39,6 +39,6 @@ public class WinchDriverModel {
     private boolean active;
 
     @ManyToOne
-	@JoinColumn(name = "winch_driver_address_fk")
+	@JoinColumn(name = "address_id")
 	private AddressModel address;
 }

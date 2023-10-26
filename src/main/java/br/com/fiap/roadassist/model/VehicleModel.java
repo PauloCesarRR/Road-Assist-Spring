@@ -3,7 +3,6 @@ package br.com.fiap.roadassist.model;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,20 +30,13 @@ public class VehicleModel {
 
     private Float length;
 
-    @Nullable
     private Float weight;
 
-    @Column(name = "driver_id")
-    private UUID idDriver;
-
-    @Column(name = "type_vehicle_id")
-    private UUID idTypeVehicle;
-
     @ManyToOne
-	@JoinColumn(name = "vehicle_driver_fk")
+	@JoinColumn(name = "driver_id")
 	private DriverModel driver;
 
     @ManyToOne
-	@JoinColumn(name = "vehicle_type_vehicle_fk")
+	@JoinColumn(name = "type_vehicle_id")
 	private TypeVehicleModel typeVehicle;
 }

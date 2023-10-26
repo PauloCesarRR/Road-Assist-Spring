@@ -27,7 +27,7 @@ public class CityModel {
     private String name;
 
     @ManyToOne
-	@JoinColumn(name = "city_state_fk")
+	@JoinColumn(name = "state_id")
 	private StateModel state;
 
     @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)

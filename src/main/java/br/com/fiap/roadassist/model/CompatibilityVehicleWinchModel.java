@@ -21,10 +21,10 @@ public class CompatibilityVehicleWinchModel {
 
 
     @ManyToOne
-	@JoinColumn(name = "type_vehicle_fk")
+	@JoinColumn(name = "type_vehicle_id")
 	private TypeVehicleModel typeVehicle;
 
     @ManyToOne
-	@JoinColumn(name = "type_vwinch_fk")
+	@JoinColumn(name = "type_winch_id")
 	private TypeWinchModel typeWinch;
 }
