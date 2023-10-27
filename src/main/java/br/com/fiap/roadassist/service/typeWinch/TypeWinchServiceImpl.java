@@ -1,7 +1,7 @@
 package br.com.fiap.roadassist.service.typeWinch;
 
 import java.util.List;
-import java.util.UUID;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,7 +29,7 @@ public class TypeWinchServiceImpl implements ITypeWinchService {
 
 
     @Override
-    public TypeWinchModel update(TypeWinchModel typeWinchModel, UUID id) throws Exception {
+    public TypeWinchModel update(TypeWinchModel typeWinchModel, Integer id) throws Exception {
         TypeWinchModel typeWinch = repo.findById(id).orElse(null);
         if(typeWinch == null) {
             return null;
@@ -47,13 +47,13 @@ public class TypeWinchServiceImpl implements ITypeWinchService {
 
 
     @Override
-    public TypeWinchModel getById(UUID id) throws Exception {
+    public TypeWinchModel getById(Integer id) throws Exception {
         return repo.findById(id).orElse(null);
     }
 
 
     @Override
-    public boolean delete(UUID id) throws Exception {
+    public boolean delete(Integer id) throws Exception {
         TypeWinchModel typeWinch = repo.findById(id).orElse(null);
         if(typeWinch == null){
             return false;

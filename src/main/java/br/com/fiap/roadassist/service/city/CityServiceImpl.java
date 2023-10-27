@@ -1,7 +1,7 @@
 package br.com.fiap.roadassist.service.city;
 
 import java.util.List;
-import java.util.UUID;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,7 +29,7 @@ public class CityServiceImpl implements ICityService {
 
 
     @Override
-    public CityModel update(CityModel cityModel, UUID id) throws Exception {
+    public CityModel update(CityModel cityModel, Integer id) throws Exception {
         CityModel city = repo.findById(id).orElse(null);
         if(city == null) {
             return null;
@@ -47,13 +47,13 @@ public class CityServiceImpl implements ICityService {
 
 
     @Override
-    public CityModel getById(UUID id) throws Exception {
+    public CityModel getById(Integer id) throws Exception {
         return repo.findById(id).orElse(null);
     }
 
 
     @Override
-    public boolean delete(UUID id) throws Exception {
+    public boolean delete(Integer id) throws Exception {
         CityModel city = repo.findById(id).orElse(null);
         if(city == null){
             return false;

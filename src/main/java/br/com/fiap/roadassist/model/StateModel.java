@@ -1,7 +1,7 @@
 package br.com.fiap.roadassist.model;
 
 import java.util.List;
-import java.util.UUID;
+
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -18,8 +18,8 @@ import lombok.Data;
 @Table(name = "tbl_state")
 public class StateModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(name = "name_state")
     private String name;

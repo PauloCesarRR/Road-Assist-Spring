@@ -1,7 +1,7 @@
 package br.com.fiap.roadassist.service.address;
 
 import java.util.List;
-import java.util.UUID;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,7 +24,7 @@ public class AddressServiceImpl implements IAddressService {
 
 
     @Override
-    public AddressModel update(AddressModel addressModel, UUID id) throws Exception {
+    public AddressModel update(AddressModel addressModel, Integer id) throws Exception {
         AddressModel address = repo.findById(id).orElse(null);
         if(address == null) {
             return null;
@@ -42,13 +42,13 @@ public class AddressServiceImpl implements IAddressService {
 
 
     @Override
-    public AddressModel getById(UUID id) throws Exception {
+    public AddressModel getById(Integer id) throws Exception {
         return repo.findById(id).orElse(null);
     }
 
 
     @Override
-    public boolean delete(UUID id) throws Exception {
+    public boolean delete(Integer id) throws Exception {
         AddressModel address = repo.findById(id).orElse(null);
         if(address == null){
             return false;

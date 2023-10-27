@@ -1,7 +1,7 @@
 package br.com.fiap.roadassist.model;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,8 +18,8 @@ import lombok.Data;
 @Table(name = "tbl_call_winch")
 public class CallModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(name = "reason_call")
     private String reasonCall;

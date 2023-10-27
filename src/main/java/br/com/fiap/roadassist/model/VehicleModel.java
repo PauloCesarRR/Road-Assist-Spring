@@ -1,7 +1,7 @@
 package br.com.fiap.roadassist.model;
 
 import java.time.LocalDate;
-import java.util.UUID;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,8 +18,8 @@ import lombok.Data;
 @Table(name = "tbl_vehicle")
 public class VehicleModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(name = "license_plate")
     private String licensePlate;

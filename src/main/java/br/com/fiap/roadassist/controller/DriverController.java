@@ -1,6 +1,6 @@
 package br.com.fiap.roadassist.controller;
 
-import java.util.UUID;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,7 +42,7 @@ public class DriverController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(HttpServletRequest request, @RequestBody DriverModel driverModel, @PathVariable UUID id){
+    public ResponseEntity<?> update(HttpServletRequest request, @RequestBody DriverModel driverModel, @PathVariable Integer id){
         try {
             DriverModel driver = service.update(driverModel, id);
 
@@ -57,7 +57,7 @@ public class DriverController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(HttpServletRequest request, @PathVariable UUID id){
+    public ResponseEntity<?> getById(HttpServletRequest request, @PathVariable Integer id){
         try {
             DriverModel driver = service.getById(id);
 
@@ -82,7 +82,7 @@ public class DriverController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(HttpServletRequest request, @PathVariable UUID id){
+    public ResponseEntity<?> delete(HttpServletRequest request, @PathVariable Integer id){
         try {
             boolean driverExists = service.delete(id);
             if(driverExists == false) {

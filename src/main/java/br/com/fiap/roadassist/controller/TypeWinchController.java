@@ -1,6 +1,6 @@
 package br.com.fiap.roadassist.controller;
 
-import java.util.UUID;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,7 +42,7 @@ public class TypeWinchController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody TypeWinchModel typeWinchModel, @PathVariable UUID id, HttpServletRequest request){
+    public ResponseEntity<?> update(@RequestBody TypeWinchModel typeWinchModel, @PathVariable Integer id, HttpServletRequest request){
         try {
             TypeWinchModel typeWinch = service.update(typeWinchModel, id);
 
@@ -57,9 +57,9 @@ public class TypeWinchController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable UUID id, HttpServletRequest request){
+    public ResponseEntity<?> getById(@PathVariable Integer id, HttpServletRequest request){
         try {
-            TypeWinchModel typeWinch = service.getById((UUID) id);
+            TypeWinchModel typeWinch = service.getById((Integer) id);
 
             if(typeWinch == null){
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Este Tipo de Guincho não existe");
@@ -82,7 +82,7 @@ public class TypeWinchController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable UUID id, HttpServletRequest request){
+    public ResponseEntity<?> delete(@PathVariable Integer id, HttpServletRequest request){
         try {
             boolean typeWinchExists = service.delete(id);
             if(typeWinchExists == false) {

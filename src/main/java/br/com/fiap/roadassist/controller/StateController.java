@@ -1,6 +1,6 @@
 package br.com.fiap.roadassist.controller;
 
-import java.util.UUID;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,7 +46,7 @@ public class StateController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(HttpServletRequest request, @RequestBody StateModel stateModel, @PathVariable UUID id){
+    public ResponseEntity<?> update(HttpServletRequest request, @RequestBody StateModel stateModel, @PathVariable Integer id){
         try {
             StateModel state = service.update(stateModel, id);
 
@@ -61,7 +61,7 @@ public class StateController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(HttpServletRequest request, @PathVariable UUID id){
+    public ResponseEntity<?> getById(HttpServletRequest request, @PathVariable Integer id){
         try {
             StateModel state = service.getById(id);
 
@@ -86,7 +86,7 @@ public class StateController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(HttpServletRequest request, @PathVariable UUID id){
+    public ResponseEntity<?> delete(HttpServletRequest request, @PathVariable Integer id){
         try {
             boolean stateExists = service.delete(id);
             if(stateExists == false) {

@@ -1,7 +1,7 @@
 package br.com.fiap.roadassist.service.driver;
 
 import java.util.List;
-import java.util.UUID;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -34,7 +34,7 @@ public class DriverServiceImpl implements IDriverService {
 
 
     @Override
-    public DriverModel update(DriverModel driverModel, UUID id) throws Exception {
+    public DriverModel update(DriverModel driverModel, Integer id) throws Exception {
         DriverModel driver = repo.findById(id).orElse(null);
         if(driver == null) {
             return null;
@@ -52,13 +52,13 @@ public class DriverServiceImpl implements IDriverService {
 
 
     @Override
-    public DriverModel getById(UUID id) throws Exception {
+    public DriverModel getById(Integer id) throws Exception {
         return repo.findById(id).orElse(null);
     }
 
 
     @Override
-    public boolean delete(UUID id) throws Exception {
+    public boolean delete(Integer id) throws Exception {
         DriverModel driver = repo.findById(id).orElse(null);
         if(driver == null){
             return false;

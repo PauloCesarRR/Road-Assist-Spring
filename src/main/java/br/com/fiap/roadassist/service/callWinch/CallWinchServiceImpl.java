@@ -1,7 +1,7 @@
 package br.com.fiap.roadassist.service.callWinch;
 
 import java.util.List;
-import java.util.UUID;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,7 +23,7 @@ public class CallWinchServiceImpl implements ICallWinchService {
 
 
     @Override
-    public CallModel update(CallModel CallModel, UUID id) throws Exception {
+    public CallModel update(CallModel CallModel, Integer id) throws Exception {
         CallModel winch = repo.findById(id).orElse(null);
         if(winch == null) {
             return null;
@@ -41,13 +41,13 @@ public class CallWinchServiceImpl implements ICallWinchService {
 
 
     @Override
-    public CallModel getById(UUID id) throws Exception {
+    public CallModel getById(Integer id) throws Exception {
         return repo.findById(id).orElse(null);
     }
 
 
     @Override
-    public boolean delete(UUID id) throws Exception {
+    public boolean delete(Integer id) throws Exception {
         CallModel call = repo.findById(id).orElse(null);
         if(call == null){
             return false;

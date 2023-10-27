@@ -1,7 +1,7 @@
 package br.com.fiap.roadassist.service.CompatibilityVehicleWinchModel;
 
 import java.util.List;
-import java.util.UUID;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -34,13 +34,13 @@ public class CompatibilityVehicleWinchServiceImpl implements ICompatibilityVehic
 
 
     @Override
-    public CompatibilityVehicleWinchModel getById(UUID id) throws Exception {
+    public CompatibilityVehicleWinchModel getById(Integer id) throws Exception {
         return repo.findById(id).orElse(null);
     }
 
 
     @Override
-    public boolean delete(UUID id) throws Exception {
+    public boolean delete(Integer id) throws Exception {
         CompatibilityVehicleWinchModel compatibility = repo.findById(id).orElse(null);
         if(compatibility == null){
             return false;

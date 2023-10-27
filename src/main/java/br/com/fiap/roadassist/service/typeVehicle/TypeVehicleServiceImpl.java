@@ -1,7 +1,7 @@
 package br.com.fiap.roadassist.service.typeVehicle;
 
 import java.util.List;
-import java.util.UUID;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,7 +29,7 @@ public class TypeVehicleServiceImpl implements ITypeVehicleService {
 
 
     @Override
-    public TypeVehicleModel update(TypeVehicleModel typeVehicleModel, UUID id) throws Exception {
+    public TypeVehicleModel update(TypeVehicleModel typeVehicleModel, Integer id) throws Exception {
         TypeVehicleModel typeVehicle = repo.findById(id).orElse(null);
         if(typeVehicle == null) {
             return null;
@@ -47,13 +47,13 @@ public class TypeVehicleServiceImpl implements ITypeVehicleService {
 
 
     @Override
-    public TypeVehicleModel getById(UUID id) throws Exception {
+    public TypeVehicleModel getById(Integer id) throws Exception {
         return repo.findById(id).orElse(null);
     }
 
 
     @Override
-    public boolean delete(UUID id) throws Exception {
+    public boolean delete(Integer id) throws Exception {
         TypeVehicleModel typeVehicle = repo.findById(id).orElse(null);
         if(typeVehicle == null){
             return false;

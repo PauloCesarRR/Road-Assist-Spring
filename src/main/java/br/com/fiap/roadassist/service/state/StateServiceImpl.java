@@ -1,7 +1,7 @@
 package br.com.fiap.roadassist.service.state;
 
 import java.util.List;
-import java.util.UUID;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,7 +29,7 @@ public class StateServiceImpl implements IStateService {
 
 
     @Override
-    public StateModel update(StateModel stateModel, UUID id) throws Exception {
+    public StateModel update(StateModel stateModel, Integer id) throws Exception {
         StateModel state = repo.findById(id).orElse(null);
         if(state == null) {
             return null;
@@ -47,13 +47,13 @@ public class StateServiceImpl implements IStateService {
 
 
     @Override
-    public StateModel getById(UUID id) throws Exception {
+    public StateModel getById(Integer id) throws Exception {
         return repo.findById(id).orElse(null);
     }
 
 
     @Override
-    public boolean delete(UUID id) throws Exception {
+    public boolean delete(Integer id) throws Exception {
         StateModel state = repo.findById(id).orElse(null);
         if(state == null){
             return false;

@@ -1,6 +1,6 @@
 package br.com.fiap.roadassist.model;
 
-import java.util.UUID;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,8 +17,8 @@ import lombok.Data;
 @Table(name = "tbl_address")
 public class AddressModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(name = "street")
     private String street;

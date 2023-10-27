@@ -1,6 +1,6 @@
 package br.com.fiap.roadassist.controller;
 
-import java.util.UUID;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.roadassist.model.AddressModel;
 import br.com.fiap.roadassist.service.address.IAddressService;
-import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +26,7 @@ public class AddressController {
     private IAddressService service;
 
     @PostMapping("/")
-    public ResponseEntity<?> create(@RequestBody AddressModel addressModel, HttpServletRequest request){
+    public ResponseEntity<?> create(@RequestBody AddressModel addressModel){
         try {
             AddressModel address = service.create(addressModel);
 
@@ -38,7 +37,7 @@ public class AddressController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody AddressModel AddressModel, HttpServletRequest request, @PathVariable UUID id){
+    public ResponseEntity<?> update(@RequestBody AddressModel AddressModel, @PathVariable Integer id){
         try {
             AddressModel address = service.update(AddressModel, id);
 
@@ -53,7 +52,7 @@ public class AddressController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<?> getById(HttpServletRequest request, @PathVariable UUID id){
+    public ResponseEntity<?> getById(@PathVariable Integer id){
         try {
             AddressModel address = service.getById(id);
 
@@ -68,7 +67,7 @@ public class AddressController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<?> getAll(HttpServletRequest request){
+    public ResponseEntity<?> getAll(){
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(service.getAll());
         } catch (Exception e) {
@@ -78,7 +77,7 @@ public class AddressController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(HttpServletRequest request, @PathVariable UUID id){
+    public ResponseEntity<?> delete(@PathVariable Integer id){
         try {
             boolean addressExists = service.delete(id);
             if(addressExists == false) {

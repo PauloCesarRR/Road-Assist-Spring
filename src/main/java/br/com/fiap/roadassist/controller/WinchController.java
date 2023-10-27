@@ -1,6 +1,6 @@
 package br.com.fiap.roadassist.controller;
 
-import java.util.UUID;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,7 +42,7 @@ public class WinchController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody WinchModel WinchModel, @PathVariable UUID id, HttpServletRequest request){
+    public ResponseEntity<?> update(@RequestBody WinchModel WinchModel, @PathVariable Integer id, HttpServletRequest request){
         try {
             WinchModel vehicle = service.update(WinchModel, id);
 
@@ -57,7 +57,7 @@ public class WinchController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable UUID id, HttpServletRequest request){
+    public ResponseEntity<?> getById(@PathVariable Integer id, HttpServletRequest request){
         try {
             WinchModel vehicle = service.getById(id);
 
@@ -82,7 +82,7 @@ public class WinchController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable UUID id, HttpServletRequest request){
+    public ResponseEntity<?> delete(@PathVariable Integer id, HttpServletRequest request){
         try {
             boolean vehicleExists = service.delete(id);
             if(vehicleExists == false) {

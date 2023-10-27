@@ -1,6 +1,6 @@
 package br.com.fiap.roadassist.model;
 
-import java.util.UUID;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,8 +14,8 @@ import lombok.Data;
 @Table(name = "tbl_type_winch")
 public class TypeWinchModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     private String name;
 }

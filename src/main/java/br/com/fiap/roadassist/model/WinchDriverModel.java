@@ -1,6 +1,6 @@
 package br.com.fiap.roadassist.model;
 
-import java.util.UUID;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,8 +17,8 @@ import lombok.Data;
 @Table(name = "tbl_winch_driver")
 public class WinchDriverModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(name = "email")
     private String email;
@@ -30,10 +30,10 @@ public class WinchDriverModel {
     private String name;
 
     @Column(name = "cpf")
-    private long cpf;
+    private Integer cpf;
 
     @Column(name = "phone_number")
-    private long phoneNumber;
+    private Integer phoneNumber;
 
     @Column(name = "active")
     private boolean active;

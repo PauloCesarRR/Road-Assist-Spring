@@ -1,7 +1,7 @@
 package br.com.fiap.roadassist.service.winchDriver;
 
 import java.util.List;
-import java.util.UUID;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -34,7 +34,7 @@ public class WinchDriverServiceImpl implements IWinchDriverService {
 
 
     @Override
-    public WinchDriverModel update(WinchDriverModel winchDriverModel, UUID id) throws Exception {
+    public WinchDriverModel update(WinchDriverModel winchDriverModel, Integer id) throws Exception {
         WinchDriverModel winchDriver = repo.findById(id).orElse(null);
         if(winchDriver == null) {
             return null;
@@ -52,13 +52,13 @@ public class WinchDriverServiceImpl implements IWinchDriverService {
 
 
     @Override
-    public WinchDriverModel getById(UUID id) throws Exception {
+    public WinchDriverModel getById(Integer id) throws Exception {
         return repo.findById(id).orElse(null);
     }
 
 
     @Override
-    public boolean delete(UUID id) throws Exception {
+    public boolean delete(Integer id) throws Exception {
         WinchDriverModel winchDriver = repo.findById(id).orElse(null);
         if(winchDriver == null){
             return false;
