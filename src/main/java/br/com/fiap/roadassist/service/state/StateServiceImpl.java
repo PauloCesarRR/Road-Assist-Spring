@@ -42,7 +42,7 @@ public class StateServiceImpl implements IStateService {
 
     @Override
     public List<StateModel> getAll() throws Exception {
-        return repo.findAll();
+        return (List<StateModel>) repo.findAll();
     }
 
 

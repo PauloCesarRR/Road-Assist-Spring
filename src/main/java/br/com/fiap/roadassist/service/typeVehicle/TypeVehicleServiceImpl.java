@@ -42,7 +42,7 @@ public class TypeVehicleServiceImpl implements ITypeVehicleService {
 
     @Override
     public List<TypeVehicleModel> getAll() throws Exception {
-        return repo.findAll();
+        return (List<TypeVehicleModel>) repo.findAll();
     }
 
 

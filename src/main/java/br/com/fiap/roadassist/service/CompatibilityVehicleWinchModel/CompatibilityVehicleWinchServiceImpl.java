@@ -29,7 +29,7 @@ public class CompatibilityVehicleWinchServiceImpl implements ICompatibilityVehic
 
     @Override
     public List<CompatibilityVehicleWinchModel> getAll() throws Exception {
-        return repo.findAll();
+        return (List<CompatibilityVehicleWinchModel>) repo.findAll();
     }
 
 

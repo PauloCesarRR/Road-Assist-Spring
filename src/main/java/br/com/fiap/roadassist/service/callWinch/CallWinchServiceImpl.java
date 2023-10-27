@@ -36,7 +36,7 @@ public class CallWinchServiceImpl implements ICallWinchService {
 
     @Override
     public List<CallModel> getAll() throws Exception {
-        return repo.findAll();
+        return (List<CallModel>) repo.findAll();
     }
 
 

@@ -42,7 +42,7 @@ public class CityServiceImpl implements ICityService {
 
     @Override
     public List<CityModel> getAll() throws Exception {
-        return repo.findAll();
+        return (List<CityModel>) repo.findAll();
     }
 
 

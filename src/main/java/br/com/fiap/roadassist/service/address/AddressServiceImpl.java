@@ -37,7 +37,7 @@ public class AddressServiceImpl implements IAddressService {
 
     @Override
     public List<AddressModel> getAll() throws Exception {
-        return repo.findAll();
+        return (List<AddressModel>) repo.findAll();
     }
 
 

@@ -47,7 +47,7 @@ public class WinchDriverServiceImpl implements IWinchDriverService {
 
     @Override
     public List<WinchDriverModel> getAll() throws Exception {
-        return repo.findAll();
+        return (List<WinchDriverModel>) repo.findAll();
     }
 
 

@@ -42,7 +42,7 @@ public class WinchServiceImpl implements IWinchService {
 
     @Override
     public List<WinchModel> getAll() throws Exception {
-        return repo.findAll();
+        return (List<WinchModel>) repo.findAll();
     }
 
 

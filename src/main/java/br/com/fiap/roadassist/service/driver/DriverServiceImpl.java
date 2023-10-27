@@ -47,7 +47,7 @@ public class DriverServiceImpl implements IDriverService {
 
     @Override
     public List<DriverModel> getAll() throws Exception {
-        return repo.findAll();
+        return (List<DriverModel>) repo.findAll();
     }
 
 
