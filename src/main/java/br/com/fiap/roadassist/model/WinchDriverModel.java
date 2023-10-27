@@ -30,10 +30,10 @@ public class WinchDriverModel {
     private String name;
 
     @Column(name = "cpf")
-    private Integer cpf;
+    private Long cpf;
 
     @Column(name = "phone_number")
-    private Integer phoneNumber;
+    private Long phoneNumber;
 
     @Column(name = "active")
     private boolean active;

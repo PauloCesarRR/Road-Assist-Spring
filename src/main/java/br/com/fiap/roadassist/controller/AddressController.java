@@ -28,6 +28,7 @@ public class AddressController {
     @PostMapping("/")
     public ResponseEntity<?> create(@RequestBody AddressModel addressModel){
         try {
+            
             AddressModel address = service.create(addressModel);
 
             return ResponseEntity.status(HttpStatus.CREATED).body(address);

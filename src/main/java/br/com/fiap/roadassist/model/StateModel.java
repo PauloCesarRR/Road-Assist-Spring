@@ -23,7 +23,4 @@ public class StateModel {
 
     @Column(name = "name_state")
     private String name;
-
-    @OneToMany(mappedBy = "state", cascade = CascadeType.ALL)
-	private List<CityModel> cities;
 }

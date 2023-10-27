@@ -29,7 +29,4 @@ public class CityModel {
     @ManyToOne
 	@JoinColumn(name = "state_id")
 	private StateModel state;
-
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-	private List<AddressModel> addresses;
 }
