@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.roadassist.model.TypeVehicleModel;
 import br.com.fiap.roadassist.service.typeVehicle.ITypeVehicleService;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ public class TypeVehicleController {
     private ITypeVehicleService service;
 
     @PostMapping("/")
-    public ResponseEntity<?> create(@RequestBody TypeVehicleModel typeVehicleModel){
+    public ResponseEntity<?> create(@RequestBody TypeVehicleModel typeVehicleModel, HttpServletRequest request){
         try {
             TypeVehicleModel typeVehicle = service.create(typeVehicleModel);
 
@@ -41,7 +42,7 @@ public class TypeVehicleController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody TypeVehicleModel typeVehicleModel, @PathVariable UUID id){
+    public ResponseEntity<?> update(@RequestBody TypeVehicleModel typeVehicleModel, @PathVariable UUID id, HttpServletRequest request){
         try {
             TypeVehicleModel typeVehicle = service.update(typeVehicleModel, id);
 
@@ -56,7 +57,7 @@ public class TypeVehicleController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable UUID id){
+    public ResponseEntity<?> getById(@PathVariable UUID id, HttpServletRequest request){
         try {
             TypeVehicleModel typeVehicle = service.getById(id);
 
@@ -71,7 +72,7 @@ public class TypeVehicleController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<?> getAll(){
+    public ResponseEntity<?> getAll(HttpServletRequest request){
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(service.getAll());
         } catch (Exception e) {
@@ -81,7 +82,7 @@ public class TypeVehicleController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable UUID id){
+    public ResponseEntity<?> delete(@PathVariable UUID id, HttpServletRequest request){
         try {
             boolean typeVehicleExists = service.delete(id);
             if(typeVehicleExists == false) {

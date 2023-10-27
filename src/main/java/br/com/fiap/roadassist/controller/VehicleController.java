@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.roadassist.model.VehicleModel;
 import br.com.fiap.roadassist.service.vehicle.IVehicleService;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ public class VehicleController {
     private IVehicleService service;
 
     @PostMapping("/")
-    public ResponseEntity<?> create(@RequestBody VehicleModel vehicleModel){
+    public ResponseEntity<?> create(@RequestBody VehicleModel vehicleModel, HttpServletRequest request){
         try {
             VehicleModel vehicle = service.create(vehicleModel);
 
@@ -41,7 +42,7 @@ public class VehicleController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody VehicleModel VehicleModel, @PathVariable UUID id){
+    public ResponseEntity<?> update(@RequestBody VehicleModel VehicleModel, @PathVariable UUID id, HttpServletRequest request){
         try {
             VehicleModel vehicle = service.update(VehicleModel, id);
 
@@ -56,7 +57,7 @@ public class VehicleController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable UUID id){
+    public ResponseEntity<?> getById(@PathVariable UUID id, HttpServletRequest request){
         try {
             VehicleModel vehicle = service.getById(id);
 
@@ -71,7 +72,7 @@ public class VehicleController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<?> getAll(){
+    public ResponseEntity<?> getAll(HttpServletRequest request){
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(service.getAll());
         } catch (Exception e) {
@@ -81,7 +82,7 @@ public class VehicleController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable UUID id){
+    public ResponseEntity<?> delete(@PathVariable UUID id, HttpServletRequest request){
         try {
             boolean vehicleExists = service.delete(id);
             if(vehicleExists == false) {

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.roadassist.model.AddressModel;
 import br.com.fiap.roadassist.service.address.IAddressService;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ public class AddressController {
     private IAddressService service;
 
     @PostMapping("/")
-    public ResponseEntity<?> create(@RequestBody AddressModel addressModel){
+    public ResponseEntity<?> create(@RequestBody AddressModel addressModel, HttpServletRequest request){
         try {
             AddressModel address = service.create(addressModel);
 
@@ -37,7 +38,7 @@ public class AddressController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody AddressModel AddressModel, @PathVariable UUID id){
+    public ResponseEntity<?> update(@RequestBody AddressModel AddressModel, HttpServletRequest request, @PathVariable UUID id){
         try {
             AddressModel address = service.update(AddressModel, id);
 
@@ -51,8 +52,8 @@ public class AddressController {
         }
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable UUID id){
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<?> getById(HttpServletRequest request, @PathVariable UUID id){
         try {
             AddressModel address = service.getById(id);
 
@@ -67,7 +68,7 @@ public class AddressController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<?> getAll(){
+    public ResponseEntity<?> getAll(HttpServletRequest request){
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(service.getAll());
         } catch (Exception e) {
@@ -77,7 +78,7 @@ public class AddressController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable UUID id){
+    public ResponseEntity<?> delete(HttpServletRequest request, @PathVariable UUID id){
         try {
             boolean addressExists = service.delete(id);
             if(addressExists == false) {

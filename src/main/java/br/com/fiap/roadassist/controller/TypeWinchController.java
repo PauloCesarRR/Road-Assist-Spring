@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.roadassist.model.TypeWinchModel;
 import br.com.fiap.roadassist.service.typeWinch.ITypeWinchService;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ public class TypeWinchController {
     private ITypeWinchService service;
 
     @PostMapping("/")
-    public ResponseEntity<?> create(@RequestBody TypeWinchModel typeWinchModel){
+    public ResponseEntity<?> create(@RequestBody TypeWinchModel typeWinchModel, HttpServletRequest request){
         try {
             TypeWinchModel typeWinch = service.create(typeWinchModel);
 
@@ -41,7 +42,7 @@ public class TypeWinchController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody TypeWinchModel typeWinchModel, @PathVariable UUID id){
+    public ResponseEntity<?> update(@RequestBody TypeWinchModel typeWinchModel, @PathVariable UUID id, HttpServletRequest request){
         try {
             TypeWinchModel typeWinch = service.update(typeWinchModel, id);
 
@@ -49,16 +50,16 @@ public class TypeWinchController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este Tipo de Guincho não está cadastrado");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(typeWinch);
+            return ResponseEntity.status(HttpStatus.OK).body(typeWinch);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable UUID id){
+    public ResponseEntity<?> getById(@PathVariable UUID id, HttpServletRequest request){
         try {
-            TypeWinchModel typeWinch = service.getById(id);
+            TypeWinchModel typeWinch = service.getById((UUID) id);
 
             if(typeWinch == null){
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Este Tipo de Guincho não existe");
@@ -71,7 +72,7 @@ public class TypeWinchController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<?> getAll(){
+    public ResponseEntity<?> getAll(HttpServletRequest request){
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(service.getAll());
         } catch (Exception e) {
@@ -81,7 +82,7 @@ public class TypeWinchController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable UUID id){
+    public ResponseEntity<?> delete(@PathVariable UUID id, HttpServletRequest request){
         try {
             boolean typeWinchExists = service.delete(id);
             if(typeWinchExists == false) {

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.roadassist.model.WinchDriverModel;
 import br.com.fiap.roadassist.service.winchDriver.IWinchDriverService;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ public class WinchDriverController {
     private IWinchDriverService service;
 
     @PostMapping("/")
-    public ResponseEntity<?> create(@RequestBody WinchDriverModel winchDriverModel){
+    public ResponseEntity<?> create(@RequestBody WinchDriverModel winchDriverModel, HttpServletRequest request){
         try {
             WinchDriverModel winchDriver = this.service.create(winchDriverModel);
 
@@ -41,7 +42,7 @@ public class WinchDriverController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody WinchDriverModel winchDriverModel, @PathVariable UUID id){
+    public ResponseEntity<?> update(@RequestBody WinchDriverModel winchDriverModel, @PathVariable UUID id, HttpServletRequest request){
         try {
             WinchDriverModel winchDriver = service.update(winchDriverModel, id);
 
@@ -49,14 +50,14 @@ public class WinchDriverController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este Motorista de Guincho já existe");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(winchDriver);
+            return ResponseEntity.status(HttpStatus.OK).body(winchDriver);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable UUID id){
+    public ResponseEntity<?> getById(@PathVariable UUID id, HttpServletRequest request){
         try {
             WinchDriverModel winchDriver = service.getById(id);
 
@@ -64,16 +65,16 @@ public class WinchDriverController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Este Motorista de Guincho não existe");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(winchDriver);
+            return ResponseEntity.status(HttpStatus.OK).body(winchDriver);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
     }
 
     @GetMapping("/")
-    public ResponseEntity<?> getAll(){
+    public ResponseEntity<?> getAll(HttpServletRequest request){
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(service.getAll());
+            return ResponseEntity.status(HttpStatus.OK).body(service.getAll());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -81,14 +82,14 @@ public class WinchDriverController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable UUID id){
+    public ResponseEntity<?> delete(@PathVariable UUID id, HttpServletRequest request){
         try {
             boolean winchDriverExists = service.delete(id);
             if(winchDriverExists == false) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Motorista de Guincho não encontrado");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body("Motorista de Guincho deletado com Sucesso");
+            return ResponseEntity.status(HttpStatus.OK).body("Motorista de Guincho deletado com Sucesso");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }

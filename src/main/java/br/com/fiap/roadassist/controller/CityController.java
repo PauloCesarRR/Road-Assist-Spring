@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.roadassist.model.CityModel;
 import br.com.fiap.roadassist.service.city.ICityService;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ public class CityController {
     private ICityService service;
 
     @PostMapping("/")
-    public ResponseEntity<?> create(@RequestBody CityModel cityModel){
+    public ResponseEntity<?> create(HttpServletRequest request, @RequestBody CityModel cityModel){
         try {
             CityModel city = service.create(cityModel);
 
@@ -41,7 +42,7 @@ public class CityController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody CityModel cityModel, @PathVariable UUID id){
+    public ResponseEntity<?> update(HttpServletRequest request, @RequestBody CityModel cityModel, @PathVariable UUID id){
         try {
             CityModel city = service.update(cityModel, id);
 
@@ -56,7 +57,7 @@ public class CityController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable UUID id){
+    public ResponseEntity<?> getById(HttpServletRequest request, @PathVariable UUID id){
         try {
             CityModel city = service.getById(id);
 
@@ -71,7 +72,7 @@ public class CityController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<?> getAll(){
+    public ResponseEntity<?> getAll(HttpServletRequest request){
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(service.getAll());
         } catch (Exception e) {
@@ -81,7 +82,7 @@ public class CityController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable UUID id){
+    public ResponseEntity<?> delete(HttpServletRequest request, @PathVariable UUID id){
         try {
             boolean cityExists = service.delete(id);
             if(cityExists == false) {

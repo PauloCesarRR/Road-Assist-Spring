@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.roadassist.model.StateModel;
 import br.com.fiap.roadassist.service.state.IStateService;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ public class StateController {
     private IStateService service;
 
     @PostMapping("/")
-    public ResponseEntity<?> create(@RequestBody StateModel stateModel){
+    public ResponseEntity<?> create(HttpServletRequest request, @RequestBody StateModel stateModel){
         try {
             if(stateModel.getName().toCharArray().length > 2){
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("A Sigla de um estado não pode ter mais que 2 caracteres");
@@ -45,7 +46,7 @@ public class StateController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody StateModel stateModel, @PathVariable UUID id){
+    public ResponseEntity<?> update(HttpServletRequest request, @RequestBody StateModel stateModel, @PathVariable UUID id){
         try {
             StateModel state = service.update(stateModel, id);
 
@@ -60,7 +61,7 @@ public class StateController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable UUID id){
+    public ResponseEntity<?> getById(HttpServletRequest request, @PathVariable UUID id){
         try {
             StateModel state = service.getById(id);
 
@@ -75,7 +76,7 @@ public class StateController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<?> getAll(){
+    public ResponseEntity<?> getAll(HttpServletRequest request){
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(service.getAll());
         } catch (Exception e) {
@@ -85,7 +86,7 @@ public class StateController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable UUID id){
+    public ResponseEntity<?> delete(HttpServletRequest request, @PathVariable UUID id){
         try {
             boolean stateExists = service.delete(id);
             if(stateExists == false) {

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.roadassist.model.WinchModel;
 import br.com.fiap.roadassist.service.winch.IWinchService;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ public class WinchController {
     private IWinchService service;
 
     @PostMapping("/")
-    public ResponseEntity<?> create(@RequestBody WinchModel winchModel){
+    public ResponseEntity<?> create(@RequestBody WinchModel winchModel, HttpServletRequest request){
         try {
             WinchModel vehicle = service.create(winchModel);
 
@@ -41,7 +42,7 @@ public class WinchController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody WinchModel WinchModel, @PathVariable UUID id){
+    public ResponseEntity<?> update(@RequestBody WinchModel WinchModel, @PathVariable UUID id, HttpServletRequest request){
         try {
             WinchModel vehicle = service.update(WinchModel, id);
 
@@ -56,7 +57,7 @@ public class WinchController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable UUID id){
+    public ResponseEntity<?> getById(@PathVariable UUID id, HttpServletRequest request){
         try {
             WinchModel vehicle = service.getById(id);
 
@@ -71,7 +72,7 @@ public class WinchController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<?> getAll(){
+    public ResponseEntity<?> getAll(HttpServletRequest request){
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(service.getAll());
         } catch (Exception e) {
@@ -81,7 +82,7 @@ public class WinchController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable UUID id){
+    public ResponseEntity<?> delete(@PathVariable UUID id, HttpServletRequest request){
         try {
             boolean vehicleExists = service.delete(id);
             if(vehicleExists == false) {

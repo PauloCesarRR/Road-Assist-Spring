@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.roadassist.model.DriverModel;
 import br.com.fiap.roadassist.service.driver.IDriverService;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ public class DriverController {
     private IDriverService service;
 
     @PostMapping("/")
-    public ResponseEntity<?> create(@RequestBody DriverModel driverModel){
+    public ResponseEntity<?> create(HttpServletRequest request, @RequestBody DriverModel driverModel){
         try {
             DriverModel driver = service.create(driverModel);
 
@@ -41,7 +42,7 @@ public class DriverController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody DriverModel driverModel, @PathVariable UUID id){
+    public ResponseEntity<?> update(HttpServletRequest request, @RequestBody DriverModel driverModel, @PathVariable UUID id){
         try {
             DriverModel driver = service.update(driverModel, id);
 
@@ -56,7 +57,7 @@ public class DriverController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable UUID id){
+    public ResponseEntity<?> getById(HttpServletRequest request, @PathVariable UUID id){
         try {
             DriverModel driver = service.getById(id);
 
@@ -71,7 +72,7 @@ public class DriverController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<?> getAll(){
+    public ResponseEntity<?> getAll(HttpServletRequest request){
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(service.getAll());
         } catch (Exception e) {
@@ -81,7 +82,7 @@ public class DriverController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable UUID id){
+    public ResponseEntity<?> delete(HttpServletRequest request, @PathVariable UUID id){
         try {
             boolean driverExists = service.delete(id);
             if(driverExists == false) {
