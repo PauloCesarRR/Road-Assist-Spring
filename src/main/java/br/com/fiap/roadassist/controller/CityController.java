@@ -50,7 +50,7 @@ public class CityController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Esta cidade não está cadastrado");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(city);
+            return ResponseEntity.status(HttpStatus.OK).body(city);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -65,7 +65,7 @@ public class CityController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Esta cidade não existe");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(city);
+            return ResponseEntity.status(HttpStatus.OK).body(city);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -74,7 +74,7 @@ public class CityController {
     @GetMapping("/")
     public ResponseEntity<?> getAll(HttpServletRequest request){
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(service.getAll());
+            return ResponseEntity.status(HttpStatus.OK).body(service.getAll());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -89,7 +89,7 @@ public class CityController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cidade não encontrada");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body("Cidade deletada com Sucesso");
+            return ResponseEntity.status(HttpStatus.OK).body("Cidade deletada com Sucesso");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }

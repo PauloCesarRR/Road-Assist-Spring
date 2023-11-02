@@ -50,7 +50,7 @@ public class CallWinchController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este chamado não está cadastrado");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(call);
+            return ResponseEntity.status(HttpStatus.OK).body(call);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -65,7 +65,7 @@ public class CallWinchController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Este chamado não existe");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(call);
+            return ResponseEntity.status(HttpStatus.OK).body(call);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -74,7 +74,7 @@ public class CallWinchController {
     @GetMapping("/")
     public ResponseEntity<?> getAll(HttpServletRequest request){
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(service.getAll());
+            return ResponseEntity.status(HttpStatus.OK).body(service.getAll());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -89,7 +89,7 @@ public class CallWinchController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Chamado não encontrado");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body("Chamado Deletado com Sucesso");
+            return ResponseEntity.status(HttpStatus.OK).body("Chamado Deletado com Sucesso");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }

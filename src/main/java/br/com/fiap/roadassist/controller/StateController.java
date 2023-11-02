@@ -54,7 +54,7 @@ public class StateController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este Estado não está cadastrado");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(state);
+            return ResponseEntity.status(HttpStatus.OK).body(state);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -69,7 +69,7 @@ public class StateController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Este Estado não existe");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(state);
+            return ResponseEntity.status(HttpStatus.OK).body(state);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -78,7 +78,7 @@ public class StateController {
     @GetMapping("/")
     public ResponseEntity<?> getAll(HttpServletRequest request){
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(service.getAll());
+            return ResponseEntity.status(HttpStatus.OK).body(service.getAll());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -93,7 +93,7 @@ public class StateController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Estado não encontrado");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body("Estado Deletado com Sucesso");
+            return ResponseEntity.status(HttpStatus.OK).body("Estado Deletado com Sucesso");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }

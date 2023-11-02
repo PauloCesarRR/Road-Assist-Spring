@@ -46,7 +46,7 @@ public class AddressController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este endereço não está cadastrado");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(address);
+            return ResponseEntity.status(HttpStatus.OK).body(address);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -61,7 +61,7 @@ public class AddressController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Este endereço não existe");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(address);
+            return ResponseEntity.status(HttpStatus.OK).body(address);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -70,7 +70,7 @@ public class AddressController {
     @GetMapping("/")
     public ResponseEntity<?> getAll(){
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(service.getAll());
+            return ResponseEntity.status(HttpStatus.OK).body(service.getAll());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -85,7 +85,7 @@ public class AddressController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Endereço não encontrado");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body("Endereço deletado com Sucesso");
+            return ResponseEntity.status(HttpStatus.OK).body("Endereço deletado com Sucesso");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }

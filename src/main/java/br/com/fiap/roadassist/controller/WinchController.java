@@ -50,7 +50,7 @@ public class WinchController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este Veículo não está cadastrado");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(vehicle);
+            return ResponseEntity.status(HttpStatus.OK).body(vehicle);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -65,7 +65,7 @@ public class WinchController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Este Veículo não existe");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(vehicle);
+            return ResponseEntity.status(HttpStatus.OK).body(vehicle);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -74,7 +74,7 @@ public class WinchController {
     @GetMapping("/")
     public ResponseEntity<?> getAll(HttpServletRequest request){
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(service.getAll());
+            return ResponseEntity.status(HttpStatus.OK).body(service.getAll());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -89,7 +89,7 @@ public class WinchController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Veículo não encontrado");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body("Veículo Deletado com Sucesso");
+            return ResponseEntity.status(HttpStatus.OK).body("Veículo Deletado com Sucesso");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }

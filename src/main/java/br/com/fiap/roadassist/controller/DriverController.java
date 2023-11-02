@@ -50,7 +50,7 @@ public class DriverController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este Usuário já existe");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(driver);
+            return ResponseEntity.status(HttpStatus.OK).body(driver);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -65,7 +65,7 @@ public class DriverController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Este Usuário não existe");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(driver);
+            return ResponseEntity.status(HttpStatus.OK).body(driver);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -74,7 +74,7 @@ public class DriverController {
     @GetMapping("/")
     public ResponseEntity<?> getAll(HttpServletRequest request){
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(service.getAll());
+            return ResponseEntity.status(HttpStatus.OK).body(service.getAll());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -89,7 +89,7 @@ public class DriverController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body("Usuário Deletado com Sucesso");
+            return ResponseEntity.status(HttpStatus.OK).body("Usuário Deletado com Sucesso");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }

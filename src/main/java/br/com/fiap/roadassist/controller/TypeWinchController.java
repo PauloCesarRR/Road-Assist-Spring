@@ -65,7 +65,7 @@ public class TypeWinchController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Este Tipo de Guincho não existe");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(typeWinch);
+            return ResponseEntity.status(HttpStatus.OK).body(typeWinch);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -74,7 +74,7 @@ public class TypeWinchController {
     @GetMapping("/")
     public ResponseEntity<?> getAll(HttpServletRequest request){
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(service.getAll());
+            return ResponseEntity.status(HttpStatus.OK).body(service.getAll());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -89,7 +89,7 @@ public class TypeWinchController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tipo de Guincho não encontrado");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body("Tipo de Guincho Deletado com Sucesso");
+            return ResponseEntity.status(HttpStatus.OK).body("Tipo de Guincho Deletado com Sucesso");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }

@@ -50,7 +50,7 @@ public class TypeVehicleController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Este Tipo de Veículo não está cadastrado");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(typeVehicle);
+            return ResponseEntity.status(HttpStatus.OK).body(typeVehicle);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -65,7 +65,7 @@ public class TypeVehicleController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Este Tipo de Veículo não existe");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(typeVehicle);
+            return ResponseEntity.status(HttpStatus.OK).body(typeVehicle);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -74,7 +74,7 @@ public class TypeVehicleController {
     @GetMapping("/")
     public ResponseEntity<?> getAll(HttpServletRequest request){
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(service.getAll());
+            return ResponseEntity.status(HttpStatus.OK).body(service.getAll());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
@@ -89,7 +89,7 @@ public class TypeVehicleController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tipo de Veículo não encontrado");
             }
 
-            return ResponseEntity.status(HttpStatus.CREATED).body("Tipo de Veículo Deletado com Sucesso");
+            return ResponseEntity.status(HttpStatus.OK).body("Tipo de Veículo Deletado com Sucesso");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage() + e.getStackTrace());
         }
