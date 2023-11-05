@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -17,7 +18,8 @@ import lombok.Data;
 @Table(name = "tbl_winch_driver")
 public class WinchDriverModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqwinchdriver")
+    @SequenceGenerator(name="seqwinchdriver", sequenceName="sequence_winch_driver",initialValue=1,allocationSize=1)
     private Integer id;
 
     @Column(name = "email")

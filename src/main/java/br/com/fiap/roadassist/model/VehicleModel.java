@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -18,7 +19,8 @@ import lombok.Data;
 @Table(name = "tbl_vehicle")
 public class VehicleModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqvehicle")
+    @SequenceGenerator(name="seqvehicle", sequenceName="sequence_vehicle",initialValue=1,allocationSize=1)
     private Integer id;
 
     @Column(name = "license_plate")

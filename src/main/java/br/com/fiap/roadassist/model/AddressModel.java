@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -17,8 +18,8 @@ import lombok.Data;
 @Table(name = "tbl_address")
 public class AddressModel {
     @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqaddress")
+    @SequenceGenerator(name="seqaddress", sequenceName="sequence_address",initialValue=1,allocationSize=1)
     private Integer id;
 
     @Column(name = "street")

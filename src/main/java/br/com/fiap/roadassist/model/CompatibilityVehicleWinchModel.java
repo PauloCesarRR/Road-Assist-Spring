@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -16,7 +17,8 @@ import lombok.Data;
 @Table(name = "tbl_compability_vehicle_winch")
 public class CompatibilityVehicleWinchModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqcompatibility")
+    @SequenceGenerator(name="seqcompatibility", sequenceName="sequence_compatibility",initialValue=1,allocationSize=1)
     private Integer id;
 
 
