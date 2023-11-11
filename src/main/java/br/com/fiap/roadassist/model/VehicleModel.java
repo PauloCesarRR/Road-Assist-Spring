@@ -28,6 +28,16 @@ public class VehicleModel {
 
     private LocalDate year;
 
+    private String categoria_tarifaria;
+
+    private String marca;
+
+    private String cor;
+
+    private String modelo;
+
+    private String carroceria;
+
     private Float height;
 
     private Float length;
