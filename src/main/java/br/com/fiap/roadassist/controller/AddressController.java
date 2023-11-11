@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.roadassist.model.AddressModel;
 import br.com.fiap.roadassist.service.address.IAddressService;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("/address")
 public class AddressController {
@@ -52,6 +53,7 @@ public class AddressController {
         }
     }
 
+    
     @GetMapping(value = "/{id}")
     public ResponseEntity<?> getById(@PathVariable Integer id){
         try {
